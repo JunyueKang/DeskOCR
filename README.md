@@ -27,7 +27,7 @@ DeskOCR —— 可能是最快、占用内存最低的Windows 平台离线 OCR�
 ## 构建和运行
 
 ### 安装使用
-1. 从 [发布页面](https://github.com/yourusername/DeskOCR/releases) 下载最新版本的 `DeskOCR.zip` 文件
+1. 从 [发布页面](https://github.com/JunyueKang/DeskOCR/releases) 下载最新版本的 `DeskOCR.zip` 文件
 2. 解压 `DeskOCR.zip` 文件到任意目录
 3. 运行 `DeskOCR.exe` 文件
 

@@ -28,7 +28,7 @@ This is a .NET 8 OCR (Optical Character Recognition) application built with WPF.
 ## Build and Run
 
 ### Installation
-1. Download the latest `DeskOCR.zip` from the [Releases page](https://github.com/yourusername/DeskOCR/releases)
+1. Download the latest `DeskOCR.zip` from the [Releases page](https://github.com/JunyueKang/DeskOCR/releases)
 2. Extract the `DeskOCR.zip` to any directory
 3. Run `DeskOCR.exe`
 
