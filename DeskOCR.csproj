@@ -1,0 +1,69 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>WinExe</OutputType>
+    <TargetFramework>net8.0-windows</TargetFramework>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <UseWPF>true</UseWPF>
+    <UseWindowsForms>true</UseWindowsForms>
+    <ApplicationManifest>app.manifest</ApplicationManifest>
+    <ApplicationHighDpiMode>PerMonitorV2</ApplicationHighDpiMode>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+    <AssemblyName>DeskOCR</AssemblyName>
+    <Product>DeskOCR</Product>
+    <ApplicationIcon>icon.ico</ApplicationIcon>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="jieba.NET" Version="0.42.2" />
+    <PackageReference Include="Microsoft.ML.OnnxRuntime" Version="1.19.2" />
+    <PackageReference Include="Newtonsoft.Json" Version="13.0.1" />
+    <PackageReference Include="OpenCvSharp4" Version="4.11.0.20250507" />
+    <PackageReference Include="Sdcb.OpenCvSharp4.mini.runtime.win-x64" Version="4.11.0.35" />
+    <PackageReference Include="Sdcb.OpenCvSharp4.mini.runtime.win-X86" Version="4.11.0.35" />
+    <PackageReference Include="Sdcb.OpenCvSharp4.mini.runtime.win-arm64" Version="4.11.0.35" />
+    <PackageReference Include="System.Drawing.Common" Version="6.0.0" />
+    <PackageReference Include="Microsoft.Extensions.Configuration" Version="8.0.0" />
+    <PackageReference Include="Microsoft.Extensions.Configuration.Json" Version="8.0.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Update="appsettings.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Resources\Languages\*.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+
+  <ItemGroup>
+    <Resource Include="icon.ico" />
+  </ItemGroup>
+
+  <!-- 复制jieba.NET的Resources目录 -->
+  <Target Name="CopyJiebaResources" BeforeTargets="Build">
+    <ItemGroup>
+      <JiebaResources Include="$(NuGetPackageRoot)jieba.net\0.42.2\Resources\**\*" />
+    </ItemGroup>
+    <Copy SourceFiles="@(JiebaResources)" DestinationFolder="$(OutputPath)Resources\jieba\%(RecursiveDir)" SkipUnchangedFiles="true" />
+  </Target>
+
+  <Target Name="CopyModelResources" BeforeTargets="Build">
+    <ItemGroup>
+      <ModelResources Include="Resources\model\**\*" />
+    </ItemGroup>
+    <Copy SourceFiles="@(ModelResources)" DestinationFolder="$(OutputPath)Resources\model\%(RecursiveDir)" SkipUnchangedFiles="true" />
+  </Target>
+
+
+  <!-- 排除未使用的opencv_videoio_ffmpeg文件 -->
+  <Target Name="RemoveUnusedFFmpegFiles" AfterTargets="Build">
+    <ItemGroup>
+      <FilesToDelete Include="$(OutputPath)runtimes\win-x64\native\opencv_videoio_ffmpeg4100_64.dll" />
+      <FilesToDelete Include="$(OutputPath)runtimes\win-x86\native\opencv_videoio_ffmpeg4100.dll" />
+    </ItemGroup>
+    <Delete Files="@(FilesToDelete)" ContinueOnError="true" />
+  </Target>
+
+</Project>

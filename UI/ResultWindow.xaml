@@ -1,0 +1,109 @@
+<!-- ResultWindow.xaml -->
+<Window x:Class="OcrApp.UI.ResultWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="OCR 结果" Icon="pack://application:,,,/icon.ico"
+        WindowStyle="None"
+        SizeToContent="WidthAndHeight"
+        MinWidth="480" MinHeight="200"
+        MaxWidth="1100" MaxHeight="800"
+        KeyDown="Window_KeyDown"
+        ShowInTaskbar="False"
+        MouseMove="Border_MouseMove"
+        MouseLeftButtonDown="Window_MouseLeftButtonDown"
+        MouseLeftButtonUp="Window_MouseLeftButtonUp"
+        Background="#aecbfa" 
+        Foreground="#f4faf6"
+        ResizeMode="CanMinimize">
+    
+    <Grid Margin="10">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+
+        <!-- OCR结果文本框 -->
+        <TextBox x:Name="ResultTextBox" 
+                 Grid.Row="0"
+                 TextWrapping="Wrap" 
+                 IsReadOnly="False"
+                 AcceptsReturn="True"
+                 AcceptsTab="True"
+                 VerticalAlignment="Stretch"
+                 HorizontalAlignment="Stretch"
+                 Margin="0,0,0,5"
+                 Padding="10"
+                 MinHeight="130"
+                 FontSize="{Binding ResultWindowFontSize}"
+                 VerticalScrollBarVisibility="Auto"
+                 HorizontalScrollBarVisibility="Auto"
+                 Background="#303030" 
+                 Foreground="#FFFFFF"
+                 BorderThickness="0"
+                 SelectionBrush="#EABCAC"/>
+
+        <!-- 翻译结果文本框 -->
+        <TextBox x:Name="TranslationTextBox" 
+                 Grid.Row="1"
+                 TextWrapping="Wrap" 
+                 IsReadOnly="False"
+                 AcceptsReturn="True"
+                 AcceptsTab="True"
+                 VerticalAlignment="Stretch"
+                 HorizontalAlignment="Stretch"
+                 Margin="0,0,0,5"
+                 Padding="10"
+                 MinHeight="130"
+                 FontSize="{Binding ResultWindowFontSize}"
+                 VerticalScrollBarVisibility="Auto"
+                 HorizontalScrollBarVisibility="Auto"
+                 Background="#303030" 
+                 Foreground="#FFFFFF"
+                 BorderThickness="0"
+                 SelectionBrush="#EABCAC"
+                 Visibility="Collapsed"/>
+
+        <!-- 按钮栏 -->
+        <StackPanel Grid.Row="2" 
+                   Orientation="Horizontal" 
+                   HorizontalAlignment="Right"
+                   Margin="0,5,0,0">
+            <Button x:Name="Extension1Button"
+                    Content="扩展一(Alt+E)" 
+                    Width="110" 
+                    Height="30" 
+                    Margin="0,0,20,0"
+                    Click="Extension1Button_Click"
+                    Background="#EABCAC" 
+                    Foreground="#4A4A3F"
+                    BorderThickness="0"/>
+            <Button x:Name="Extension2Button"
+                    Content="扩展二(Alt+R)" 
+                    Width="110" 
+                    Height="30" 
+                    Margin="0,0,20,0"
+                    Click="Extension2Button_Click"
+                    Background="#EABCAC" 
+                    Foreground="#4A4A3F"
+                    BorderThickness="0"/>
+            <Button x:Name="CopyOriginalButton" 
+                    Content="复制原文(Alt+C)" 
+                    Width="100" 
+                    Height="30" 
+                    Margin="0,0,20,0"
+                    Click="CopyButton_Click"
+                    Background="#EABCAC" 
+                    Foreground="#4A4A3F"
+                    BorderThickness="0"/>
+            <Button x:Name="CloseButton"
+                    Content="关闭(Alt+D)" 
+                    Width="100" 
+                    Height="30" 
+                    Click="CloseButton_Click"
+                    Background="#EABCAC" 
+                    Foreground="#4A4A3F"
+                    BorderThickness="0"/>
+        </StackPanel>
+    </Grid>
+</Window>
